@@ -34,8 +34,8 @@ const PLAYGROUND_TEMPLATES = [
   }
 ];
 
-// Ultra-Delightful Fluid Spring Parameter Token Configs
-const FLUID_SPRING = { type: "spring", damping: 25, stiffness: 180, mass: 0.8 };
+// Fluid Spring Configuration with strict literal casting for type safety
+const FLUID_SPRING = { type: "spring", damping: 25, stiffness: 180, mass: 0.8 } as const;
 
 export default function Home() {
   const [code, setCode] = useState("");
@@ -68,7 +68,7 @@ export default function Home() {
     
     const evaluationTicker = setInterval(() => {
       setProgress(current => (current < 92 ? current + 8 : current));
-    }, 120);
+    }, 125);
 
     try {
       const resultStream = await fetch('/api/analyze', {
@@ -122,7 +122,6 @@ export default function Home() {
       {/* High-End Apple Hardware Aesthetics Header */}
       <header className="max-w-[80rem] mx-auto px-8 py-5 flex items-center justify-between border-b border-black/[0.03] bg-[#F5F5F7]/70 backdrop-blur-2xl sticky top-0 z-50">
         <div className="flex items-center gap-2.5 group cursor-default">
-          {/* Custom Engineered Minimalist Geometrical Logo */}
           <div className="h-6 w-6 rounded-md bg-[#1D1D1F] flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
             <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white fill-none stroke-current stroke-[2.5]">
               <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
@@ -143,7 +142,7 @@ export default function Home() {
       {/* Spacious Unified Main Stage */}
       <main className="max-w-[80rem] mx-auto px-8 pt-24 space-y-20">
         
-        {/* Descriptive Native Product Layout Headers */}
+        {/* Title Content Section */}
         <div className="space-y-3.5 max-w-xl">
           <motion.h1 
             initial={{ opacity: 0, y: 8 }} 
@@ -164,7 +163,7 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* WORKSPACE INPUT STAGE: Professional Native Desktop Console App Frame */}
+        {/* WORKSPACE INPUT STAGE: Clean Native Desktop Console App Frame */}
         <div className="apple-workspace-card rounded-2xl p-7 bg-white space-y-7">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/[0.03] pb-4">
             <div className="flex items-center gap-2">
@@ -175,7 +174,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <div 
                 onClick={() => hiddenFileInputRef.current?.click()}
-                className="text-[11px] font-medium text-neutral-600 hover:text-black transition-colors cursor-pointer px-3 py-1.5 rounded-lg bg-neutral-100/60 border border-black/[0.03] flex items-center gap-1.5 shadow-2xs"
+                className="text-[11px] font-medium text-neutral-600 hover:text-black transition-colors cursor-pointer px-3 py-1.5 rounded-lg bg-neutral-100/60 border border-black/[0.03] flex items-center gap-1.5 shadow-sm"
               >
                 <Upload className="h-3.5 w-3.5 text-neutral-400" /> Upload Source
               </div>
@@ -191,7 +190,7 @@ export default function Home() {
               <select 
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="bg-white border border-black/[0.05] rounded-lg text-xs px-2.5 py-1.5 font-mono text-neutral-700 focus:border-[#0071E3] focus:outline-none shadow-2xs"
+                className="bg-white border border-black/[0.05] rounded-lg text-xs px-2.5 py-1.5 font-mono text-neutral-700 focus:border-[#0071E3] focus:outline-none shadow-sm"
               >
                 <option value="typescript">TypeScript</option>
                 <option value="python">Python</option>
@@ -200,7 +199,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Clean Functional Sandbox Preset Array Blocks */}
+          {/* Reference Testing Playgrounds */}
           <div className="space-y-1.5">
             <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest block pl-0.5">Reference Testing Playgrounds</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
@@ -208,7 +207,7 @@ export default function Home() {
                 <div 
                   key={idx}
                   onClick={() => { setCode(preset.code); setLanguage(preset.lang); }}
-                  className="apple-workspace-card p-3.5 rounded-xl cursor-pointer flex justify-between items-center group bg-[#F5F5F7]/40 border-black/[0.03]"
+                  className="apple-workspace-card p-3.5 rounded-xl cursor-pointer flex justify-between items-center group bg-neutral-100/40 border-black/[0.03]"
                 >
                   <div className="space-y-0.5">
                     <h4 className="text-xs font-semibold text-black group-hover:text-[#0071E3] transition-colors flex items-center gap-2">
@@ -222,7 +221,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Immersive Textarea Core Gutter Columns */}
+          {/* Core Text Input Frame */}
           <div 
             onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
             onDragLeave={() => setIsDragging(false)}
@@ -251,7 +250,7 @@ export default function Home() {
             <button
               onClick={executePipelineEvaluation}
               disabled={isAnalyzing || !code.trim()}
-              className="px-6 py-2.5 bg-[#1D1D1F] hover:bg-[#2D2D2F] text-white text-xs font-medium rounded-xl transition-all flex items-center gap-2 shadow-xs active:scale-[0.99] disabled:opacity-30"
+              className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white text-xs font-semibold rounded-xl transition-all flex items-center gap-2 shadow-md shadow-indigo-600/10 active:scale-[0.97] hover:shadow-lg disabled:opacity-30 disabled:pointer-events-none"
             >
               {isAnalyzing ? <RefreshCw className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
               {isAnalyzing ? `Parsing Modules (${progress}%)` : "Compile Workspace Diagnostics"}
@@ -260,8 +259,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* LIVE EVALUATION LOADING OVERLAY DISPLAY */}
-        <div ref={resultsFocusScrollRef} className="pt-2">
+        {/* LIVE EVALUATION SECTION OUTPUT VIEWPORTS */}
+        <div className="pt-2">
           <AnimatePresence mode="wait">
             {isAnalyzing && (
               <motion.div 
@@ -282,7 +281,6 @@ export default function Home() {
               </motion.div>
             )}
 
-            {/* LIVE DISPLAY RESULTS COMPONENT: Apple Split Workspace Pane Screen */}
             {!isAnalyzing && showResults && analysisData && (
               <motion.div 
                 initial={{ opacity: 0, y: 16 }} 
@@ -321,7 +319,7 @@ export default function Home() {
                 {/* Unified Output Panel Area Grid */}
                 <div className="apple-workspace-card rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm">
                   
-                  {/* Clean Tab Selector Controls Bar */}
+                  {/* Tab Navigation header */}
                   <div className="border-b border-black/[0.03] bg-[#F5F5F7]/40 p-3 flex gap-1.5 items-center justify-between px-5 flex-wrap">
                     <div className="flex gap-1">
                       {(['diff', 'anomalies', 'security'] as const).map((tab) => (
@@ -350,14 +348,10 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Dynamic Render Frame Slots */}
+                  {/* Dynamic Render Sub-tab Containers */}
                   <div className="p-7 min-h-[460px] bg-white">
-                    
-                    {/* SUB-VIEW A: FULL SIDE BY SIDE SYSTEM SYNTAX COMPARE MATRIX */}
                     {activeTab === 'diff' && (
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-                        
-                        {/* Source Frame block */}
                         <div className="flex flex-col rounded-xl overflow-hidden border border-black/[0.03] bg-[#F5F5F7]/30">
                           <div className="bg-neutral-50/50 border-b border-black/[0.02] px-4 py-2 flex items-center text-[11px] font-mono text-neutral-400">
                             <span className="flex items-center gap-1.5 text-rose-600/70"><span className="h-1.5 w-1.5 rounded-full bg-rose-500" /> Baseline Code Layout</span>
@@ -369,7 +363,6 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* Refactored target block */}
                         <div className="flex flex-col rounded-xl overflow-hidden border border-black/[0.03] bg-[#F5F5F7]/30">
                           <div className="bg-neutral-50/50 border-b border-black/[0.02] px-4 py-2 flex items-center text-[11px] font-mono text-neutral-400">
                             <span className="flex items-center gap-1.5 text-emerald-600/70"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Refactored AI Synthesis</span>
@@ -380,11 +373,9 @@ export default function Home() {
                             </SyntaxHighlighter>
                           </div>
                         </div>
-
                       </div>
                     )}
 
-                    {/* SUB-VIEW B: LOGICAL COMPLIANCE REVIEWS LIST */}
                     {activeTab === 'anomalies' && (
                       <div className="space-y-3.5 max-w-4xl">
                         {analysisData.issues.map((issue, idx) => (
@@ -409,7 +400,6 @@ export default function Home() {
                       </div>
                     )}
 
-                    {/* SUB-VIEW C: SECURITY THREAT AND EXPLOIT PARSING */}
                     {activeTab === 'security' && (
                       <div className="space-y-3.5 max-w-4xl">
                         {analysisData.security.length === 0 ? (
@@ -435,11 +425,10 @@ export default function Home() {
                         )}
                       </div>
                     )}
-
                   </div>
                 </div>
 
-                {/* Section D: Premium Claude-Style Continuous Fine-Tuning Console Bar */}
+                {/* Section D: Continuous Refinement Prompt Console */}
                 <div className="apple-workspace-card rounded-2xl p-7 bg-white space-y-5">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 font-mono">
                     <MessageSquare className="h-4 w-4 text-neutral-400" />
@@ -448,10 +437,8 @@ export default function Home() {
 
                   <div className="space-y-3 max-h-56 overflow-y-auto apple-pane-scroll pr-1">
                     {interactiveChatThread.map((msg, i) => (
-                      <motion.div 
+                      <div 
                         key={i} 
-                        initial={{ opacity: 0, y: 4 }} 
-                        animate={{ opacity: 1, y: 0 }}
                         className={`p-3.5 rounded-xl text-xs leading-relaxed border ${
                           msg.role === 'user' 
                             ? 'bg-neutral-50 border-black/[0.02] ml-12 text-neutral-800' 
@@ -462,7 +449,7 @@ export default function Home() {
                           {msg.role === 'user' ? 'Tuning Modifier' : 'AetherCode Log Action'}
                         </span>
                         {msg.text}
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
 
@@ -478,7 +465,7 @@ export default function Home() {
                     <button
                       onClick={dispatchWorkspaceAdjustment}
                       disabled={!chatInputMessage.trim()}
-                      className="h-7 w-7 bg-[#1D1D1F] hover:bg-neutral-800 text-white rounded-lg flex items-center justify-center transition-all disabled:opacity-20 shadow-2xs active:scale-[0.96]"
+                      className="h-7 w-7 bg-[#1D1D1F] hover:bg-neutral-800 text-white rounded-lg flex items-center justify-center transition-all disabled:opacity-20 shadow-sm active:scale-[0.96]"
                     >
                       <ArrowRight className="h-4 w-4" />
                     </button>
@@ -489,7 +476,6 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-
       </main>
     </div>
   );
