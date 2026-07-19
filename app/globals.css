@@ -4,51 +4,62 @@
 
 @layer base {
   body {
-    background-color: #FBFBFA;
-    color: #1C1C1E;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Pure native Apple Alabaster tone */
+    background-color: #F5F5F7;
+    color: #1D1D1F;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Premium Light UI Design Tokens */
-.apple-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.015), 0 1px 3px rgba(0, 0, 0, 0.02);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* Premium Sub-pixel Border Masks & Apple System Silicon Panels */
+.apple-workspace-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(30px) saturate(210%);
+  border: 1px solid rgba(0, 0, 0, 0.045);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.01),
+    0 8px 32px rgba(0, 0, 0, 0.015),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.apple-panel:hover {
+.apple-workspace-card:hover {
   border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.015),
+    0 12px 48px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.apple-input {
-  background: rgba(0, 0, 0, 0.015);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
+.apple-glass-input {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.apple-input:focus-within {
+.apple-glass-input:focus-within {
   background: #FFFFFF;
-  border-color: #6366F1;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+  border-color: #0071E3; /* Classic Apple Blue Token */
+  box-shadow: 
+    0 0 0 3px rgba(0, 113, 227, 0.15),
+    inset 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 
-/* Code layout adjustments for light theme grids */
-.pane-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Premium Scrollbars for Code Split Panels */
+.apple-pane-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
-.pane-scrollbar::-webkit-scrollbar-track {
+.apple-pane-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
-.pane-scrollbar::-webkit-scrollbar-thumb {
+.apple-pane-scroll::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.08);
   border-radius: 99px;
 }
-.pane-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.16);
+.apple-pane-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
