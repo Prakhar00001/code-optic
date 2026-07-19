@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenAI, Type } from '@google/genai';
 
-// Initialize the Google AI SDK instance securely
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// ⚡ Crucial: Force initialization layer parameter check explicitly
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
 export async function POST(request: Request) {
   try {
@@ -27,11 +27,11 @@ export async function POST(request: Request) {
       \`\`\`
     `;
 
-    console.log(`[AetherCode Pipeline]: Initiating query payload connection to Google SDK for language: ${language}`);
+    console.log(`[AetherCode Pipeline]: Initiating structural check for language: ${language}`);
 
-    // Execute content generation targeting the latest resilient multimodal model engine
+    // Execute content generation using the base GA production identifier
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-001', 
+      model: 'gemini-2.5-flash', 
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -75,28 +75,15 @@ export async function POST(request: Request) {
 
     const responseText = response.text;
     if (!responseText) {
-      throw new Error("Empty character buffer sequence returned from server gateway.");
+      throw new Error("Empty buffer returned from remote gateway configuration.");
     }
 
-    console.log("[AetherCode Pipeline]: Content deconstruction compiled successfully from remote cluster.");
     return NextResponse.json(JSON.parse(responseText));
 
   } catch (error: any) {
     console.error("API Gateway Exception Logged:", error);
-    
-    // Check if the failure pattern matches a pure network handshake timeout
-    if (error.code === 'UND_ERR_CONNECT_TIMEOUT' || error.message?.includes('timeout')) {
-      return NextResponse.json(
-        { 
-          error: "Google API Gateway Connection Timeout", 
-          details: "The network request timed out while contacting Google servers. Please verify internet stability or try a different connection/network hotspot."
-        },
-        { status: 504 }
-      );
-    }
-
     return NextResponse.json(
-      { error: "Failed to evaluate code metrics profile", details: error.message },
+      { error: "Failed to evaluate code diagnostics metrics", details: error.message },
       { status: 500 }
     );
   }
