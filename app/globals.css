@@ -4,36 +4,51 @@
 
 @layer base {
   body {
-    background-color: #03060f;
-    color: #f1f5f9;
-    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background-color: #FBFBFA;
+    color: #1C1C1E;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Luxury UI Glass Elements */
-.luxury-panel {
-  background: rgba(8, 12, 24, 0.45);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+/* Premium Light UI Design Tokens */
+.apple-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.015), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.luxury-panel:hover {
-  border-color: rgba(99, 102, 241, 0.15);
+.apple-panel:hover {
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
-/* Custom layout scrollbars for high-fidelity split panes */
+.apple-input {
+  background: rgba(0, 0, 0, 0.015);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.apple-input:focus-within {
+  background: #FFFFFF;
+  border-color: #6366F1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+}
+
+/* Code layout adjustments for light theme grids */
 .pane-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 .pane-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 .pane-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 99px;
 }
 .pane-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.16);
 }
