@@ -26,9 +26,9 @@ export async function POST(request: Request) {
       \`\`\`
     `;
 
-    // ⚡ MODEL UPGRADED TO PRODUCTION-GRADE COMPATIBILITY
+    // 🚀 FRONTIER-CLASS NEXT-GEN MULTIMODAL COMPATIBILITY ENGINE
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-001', 
+      model: 'gemini-3.5-flash', 
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
